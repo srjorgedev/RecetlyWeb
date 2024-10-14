@@ -1,16 +1,25 @@
 ---
-
+import MainLayout from "../layouts/MainLayout.astro";
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<MainLayout title ="RECETLY">
+	<h1>RECETLY</h1>
+	<h2>La aplicacion <strong>#1</strong> de recetas de comida</h2>
+	<p>
+		Se participe de la mejor aplicacion de recetas de comida del mercado.
+		Unete a la comunidad y aprovecha las posibilidades
+	</p>
+
+	<input type="button" value="Iniciar Sesion" id="signin" />
+	<input type="button" value="Registrarse" id="signup" />
+	
+	<p>O descarga la aplicacion movil <a href="https://bit.ly/4eF7933">aqui</a></p>
+</MainLayout>
+
+<script>
+	const $singin = document.querySelector("#signin");
+
+	$singin.addEventListener("click", () => {
+		location.replace("/auth/login");
+	});
+</script>
