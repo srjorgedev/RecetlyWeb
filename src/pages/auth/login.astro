@@ -41,8 +41,8 @@ if (token !== null) {
     const $form = document.querySelector("form");
     const $signin = $form.querySelector("#signin");
     const $signup = $form.querySelector("#signup");
-    const $email = $form.querySelector("#email");
-    const $password = $form.querySelector("#password");
+    const $email = $form.querySelector<HTMLInputElement>("#email");
+    const $password = $form.querySelector<HTMLInputElement>("#password");
 
     let isDisabled = false;
 
