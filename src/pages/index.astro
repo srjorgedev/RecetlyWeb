@@ -2,24 +2,158 @@
 import MainLayout from "../layouts/MainLayout.astro";
 ---
 
-<MainLayout title ="RECETLY">
-	<h1>RECETLY</h1>
+<MainLayout title="RECETLY">
+	<h1>BIENVENIDO A <span>RECETLY</span></h1>
 	<h2>La aplicacion <strong>#1</strong> de recetas de comida</h2>
+	<p>
+		<strong>¿Que es recetly?</strong> La mejor aplicacion de recetas de comida.
+		Aqui encontraras una gran variedad de recetas, desde mexicana, italiana,
+		oriental y entre muchas otras.
+	</p>
 	<p>
 		Se participe de la mejor aplicacion de recetas de comida del mercado.
 		Unete a la comunidad y aprovecha las posibilidades
 	</p>
 
-	<input type="button" value="Iniciar Sesion" id="signin" />
-	<input type="button" value="Registrarse" id="signup" />
-	
-	<p>O descarga la aplicacion movil <a href="https://bit.ly/4eF7933">aqui</a></p>
+	<p>Unete a RECETLY</p>
+
+	<article>
+		<section>
+			<a id="signin" href="/auth/login">Iniciar Sesion</a>
+			<a id="signup">Registrarse</a>
+		</section>
+
+		<a href="https://bit.ly/4eF7933">O descarga la aplicacion movil aqui</a>
+	</article>
 </MainLayout>
 
-<script>
-	const $singin = document.querySelector("#signin");
+<script></script>
 
-	$singin.addEventListener("click", () => {
-		location.replace("/auth/login");
-	});
-</script>
+<style>
+	h1 {
+		font-size: 5rem;
+	}
+	h2 {
+		font-size: 2.5rem;
+	}
+	p {
+		font-size: 2rem;
+		margin-top: 1.5rem;
+	}
+	article {
+		height: auto;
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
+		margin: 1rem 0 0 0;
+
+		& section {
+			display: flex;
+			flex-direction: row;
+			gap: 0.5rem;
+
+			& a {
+				font-size: 2rem;
+				cursor: pointer;
+				padding: 1rem 2.5rem;
+				border: none;
+			}
+			& a:first-child {
+				background: #582eff;
+				color: #f1f1f1;
+			}
+			& a:last-child {
+				background: #34208f;
+				color: #f1f1f1;
+			}
+		}
+		& a {
+			flex: 1;
+			font-size: 2rem;
+			padding: 1rem 2.05rem;
+			text-decoration: none;
+			display: inline-block;
+			border: 2px solid #582eff;
+			background: #582eff25;
+			text-align: center;
+			border-radius: 16px;
+			color: #333333;
+			transition: 0.15s ease-in-out filter;
+		}
+		& a:hover {
+			filter: invert();
+		}
+	}
+	@media (min-width: 768px) {
+		* {
+			user-select: none;
+		}
+		h1 {
+			font-size: 9rem;
+			line-height: 1;
+			margin-bottom: 4rem;
+		}
+		h2 {
+			font-size: 3rem;
+			font-weight: normal;
+			margin-bottom: 1rem;
+		}
+		p {
+			font-size: 2.5rem;
+			margin-top: 1rem;
+			z-index: 2;
+			position: relative;
+			max-width: 1080px;
+		}
+
+		article {
+			width: 42rem;
+			height: auto;
+			display: flex;
+			flex-direction: column;
+			gap: 0.5rem;
+			margin: 4rem 0 0 0;
+
+			& section {
+				display: flex;
+				flex-direction: row;
+				gap: 0.5rem;
+
+				& a {
+					font-size: 2.5rem;
+					cursor: pointer;
+					padding: 1.25rem 2.75rem;
+					border: none;
+				}
+				& a:first-child {
+					background: #582eff;
+					color: #f1f1f1;
+				}
+				& a:last-child {
+					background: #34208f;
+					color: #f1f1f1;
+				}
+			}
+			& a {
+				flex: 1;
+				font-size: 2.25rem;
+				padding: 1rem 2.05rem;
+				text-decoration: none;
+				display: inline-block;
+				border: 2px solid #582eff;
+				background: #582eff25;
+				text-align: center;
+				border-radius: 16px;
+				color: #333333;
+				transition: 0.15s ease-in-out filter;
+			}
+			& a:hover {
+				filter: invert();
+			}
+		}
+	}
+	span,
+	strong {
+		color: #582eff;
+	}
+</style>
