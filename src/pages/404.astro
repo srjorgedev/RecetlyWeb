@@ -1,0 +1,50 @@
+---
+import MainLayout from "../layouts/MainLayout.astro";
+---
+
+<MainLayout title="Pagina no encontrada">
+    <h1>
+        <strong>Oops!</strong>
+        <br />Página no encontrada.
+    </h1>
+    <h2>Parece que te has perdido. <a href="/">Volvamos al inicio.</a></h2>
+    <h3>Error <strong>404</strong></h3>
+</MainLayout>
+
+<style>
+    h1 {
+        font-size: 5rem;
+        margin: 1rem 0;
+        line-height: 1;
+    }
+    h2 {
+        font-size: 2.5rem;
+        font-weight: normal;
+        line-height: 1.2;
+        margin-top: 2rem;
+    }
+    h3 {
+        margin-top: 2rem;
+        font-size: 2.25rem;
+    }
+    span,
+    strong {
+        color: #582eff;
+    }
+    @media (min-width: 768px) {
+        form {
+            padding: 4rem;
+            margin-top: 4rem;
+        }
+        h1 {
+            font-size: 9rem;
+            line-height: 1;
+        }
+        h2 {
+            font-size: 3rem;
+        }
+        form {
+            margin-top: 2rem;
+        }
+    }
+</style>

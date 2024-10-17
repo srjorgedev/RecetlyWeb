@@ -1,5 +1,6 @@
 ---
 import MainLayout from "../../layouts/MainLayout.astro";
+
 const cookies = Astro.request.headers.get("cookie");
 let token = null;
 
@@ -12,39 +13,87 @@ if (cookies) {
 }
 
 if (token !== null) {
-    return Astro.redirect('/')
+    return Astro.redirect("/");
 }
 ---
 
 <MainLayout title="Inicia Sesion">
-    <main>
-        <h1>Bienvenido de nuevo</h1>
-        <h2>
-            Ingresa tus datos y accede a todo el contenido que RECETLY tiene
-            para ofrecerte
-        </h2>
+    <h1>BIENVENIDO <strong>DE NUEVO</strong></h1>
+    <h2>
+        Ingresa tus datos y accede a todo el contenido que <strong>RECETLY</strong> tiene para
+        ofrecerte
+    </h2>
 
-        <form action="post">
-            <label for="emailInput">Correo electronico</label>
-            <input type="email" name="emailInput" id="email" />
+    <form action="post">
+        <label for="emailInput">Correo electronico</label>
+        <input type="email" name="emailInput" id="email" />
 
-            <label for="passwordInput">Contraseña</label>
+        <label for="passwordInput">Contraseña</label>
+        <div class="password">
             <input type="password" name="passwordInput" id="password" />
+            <button class="show">
+                <span class="password-icon lock">
+                    <svg
+                        fill="#000000"
+                        width="36px"
+                        height="36px"
+                        viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg"
+                        ><path
+                            d="M17,9V7A5,5,0,0,0,7,7V9a3,3,0,0,0-3,3v7a3,3,0,0,0,3,3H17a3,3,0,0,0,3-3V12A3,3,0,0,0,17,9ZM9,7a3,3,0,0,1,6,0V9H9Zm9,12a1,1,0,0,1-1,1H7a1,1,0,0,1-1-1V12a1,1,0,0,1,1-1H17a1,1,0,0,1,1,1Z"
+                        ></path></svg
+                    >
+                </span>
+                <span class="password-icon unlock">
+                    <svg
+                        fill="#000000"
+                        width="36px"
+                        height="36px"
+                        viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg"
+                        ><path
+                            d="M17,9H9V7a3,3,0,0,1,5.12-2.13,3.08,3.08,0,0,1,.78,1.38,1,1,0,1,0,1.94-.5,5.09,5.09,0,0,0-1.31-2.29A5,5,0,0,0,7,7V9a3,3,0,0,0-3,3v7a3,3,0,0,0,3,3H17a3,3,0,0,0,3-3V12A3,3,0,0,0,17,9Zm1,10a1,1,0,0,1-1,1H7a1,1,0,0,1-1-1V12a1,1,0,0,1,1-1H17a1,1,0,0,1,1,1Z"
+                        ></path></svg
+                    >
+                </span>
+            </button>
+        </div>
 
-            <input type="submit" id="signin" value="Entrar" />
-            <input type="button" id="signup" value="No tengo una cuenta" />
-        </form>
-    </main>
+        <input type="submit" id="signin" value="Entrar" />
+        <a href="/auth/signup">No tengo una cuenta</a>
+    </form>
 </MainLayout>
 
 <script>
     const $form = document.querySelector("form");
     const $signin = $form.querySelector("#signin");
     const $signup = $form.querySelector("#signup");
+    const $show = document.querySelector<HTMLButtonElement>(".show");
+    const $lock = $show.querySelector<HTMLElement>(".lock");
+    const $unlock = $show.querySelector<HTMLElement>(".unlock");
     const $email = $form.querySelector<HTMLInputElement>("#email");
     const $password = $form.querySelector<HTMLInputElement>("#password");
 
     let isDisabled = false;
+    let lock = true;
+
+    $show.addEventListener("click", () => {
+        if (lock) {
+            $unlock.style.display = "none";
+            $lock.style.display = "block";
+
+            $password.type = "text";
+
+            lock = false;
+        } else {
+            $lock.style.display = "none";
+            $unlock.style.display = "block";
+
+            $password.type = "password";
+
+            lock = true;
+        }
+    });
 
     $form.addEventListener("submit", async (evt) => {
         evt.preventDefault();
@@ -75,19 +124,54 @@ if (token !== null) {
 
 <style>
     h1 {
-        font-size: 5.5rem;
+        font-size: 5rem;
+        margin: 1rem 0;
+        line-height: 1;
     }
     h2 {
         font-size: 2.5rem;
         font-weight: normal;
+        line-height: 1.2;
+    }
+    span,
+    strong {
+        color: #582eff;
+    }
+    div.password {
+        display: flex;
+        position: relative;
+
+        & button,
+        span {
+            cursor: pointer;
+        }
+
+        & button {
+            background: transparent;
+            position: absolute;
+            top: 3px;
+            right: 10px;
+            width: 42px;
+            aspect-ratio: 1;
+            transition: 0.15s ease-in-out transform;
+
+            & .lock {
+                display: none;
+            }
+        }
+
+        & button:active {
+            transform: translateY(2px);
+        }
     }
     form {
         display: flex;
         flex-direction: column;
         margin-top: 2rem;
-        padding: 4rem;
-        background: #5b8ae3;
+        padding: 2rem;
+        background: #582eff;
         border-radius: 2rem;
+        color: white;
 
         & label {
             font-size: 2rem;
@@ -99,6 +183,7 @@ if (token !== null) {
             outline: none;
             border-radius: 1rem;
             border: none;
+            width: 100%;
         }
         & input:not(input[type="submit"], input[type="button"]) {
             padding-left: 1rem;
@@ -109,19 +194,39 @@ if (token !== null) {
         }
         & input[type="submit"] {
             margin: 4rem 0 1rem 0;
-            background-color: #d4e3ff;
+            background-color: #4a22ec;
         }
-        & input[type="button"] {
-            background-color: #4e7bcf;
+        & a {
+            font-size: 2rem;
+            text-align: center;
+            background-color: #231657;
+            padding: 0.5rem 0;
+            text-decoration: none;
+            border-radius: 1rem;
         }
         & input[type="submit"],
-        input[type="button"] {
+        a {
             cursor: pointer;
             transition: transform 0.1s ease-in-out;
+            color: #f1f1f1;
         }
         & input[type="submit"]:active,
-        input[type="button"]:active {
+        a:active {
             transform: translateY(3px);
+        }
+    }
+
+    @media (min-width: 768px) {
+        form {
+            padding: 4rem;
+            margin-top: 4rem;
+        }
+        h1 {
+            font-size: 9rem;
+            line-height: 1;
+        }
+        form {
+            margin-top: 2rem;
         }
     }
 </style>
