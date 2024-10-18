@@ -1,17 +1,39 @@
-h1 {
-    font-size: 4.5rem;
-    margin: 1rem 0;
+div.main-layout {
+    position: relative;
 }
 
-h2 {
-    font-size: 2.5rem;
-    font-weight: normal;
-    line-height: 1.2;
+.a {
+    display: flex;
 }
 
-span,
-strong {
-    color: #582eff;
+.d {
+    display: none;
+}
+
+div.personal-info,
+div.private-info {
+    flex-direction: column;
+}
+
+div.cropper,
+div.cropper button {
+    border-radius: 1rem;
+}
+
+div.cropper {
+    position: absolute;
+    background: #c1c1c1;
+    top: 0;
+    left: 5%;
+    padding: 2rem;
+    width: 90%;
+}
+
+div.cropper button {
+    width: 100%;
+    height: 4rem;
+    font-size: 2rem;
+    margin: 1rem 0 0 0;
 }
 
 form {
@@ -30,7 +52,8 @@ form label {
     margin-bottom: 0.5rem;
 }
 
-form input {
+form input,
+button.next {
     height: 4rem;
     font-size: 2rem;
     outline: none;
@@ -38,14 +61,31 @@ form input {
     border-radius: 1rem;
 }
 
+form img {
+    width: 100px;
+    aspect-ratio: 1;
+    cursor: pointer;
+    border-radius: 50%;
+}
+
+form input[type="file"] {
+    width: 100%;
+
+}
+
 form input:not(input[type="submit"]) {
     padding-left: 1rem;
     cursor: text;
 }
 
-form input[type="submit"] {
+form input[type="submit"],
+button.next {
     margin: 4rem 0 1rem 0;
     background-color: #4a22ec;
+}
+
+button.next {
+    margin: 1.5rem 0 1rem 0;
 }
 
 form a {
@@ -58,7 +98,8 @@ form a {
 }
 
 form input[type="submit"],
-form a {
+form a,
+button.next {
     cursor: pointer;
     transition: transform 0.1s ease-in-out;
     color: #f1f1f1;
@@ -72,9 +113,5 @@ form a:active {
 @media (min-width: 768px) {
     form {
         padding: 4rem;
-    }
-
-    h1 {
-        font-size: 9rem;
     }
 }

@@ -4,5 +4,34 @@ import RegistrarionForm from "../../components/RegisterForm";
 ---
 
 <MainLayout title="Crea una cuenta">
+    <h1>BIENVENIDO</h1>
+    <h2>
+        Ingresa tus datos y registrate en <strong>RECETLY</strong> para tener acceso
+        a la mejor aplicación de recetas de comida.
+    </h2>
     <RegistrarionForm client:load />
 </MainLayout>
+
+<style>
+    h1 {
+        font-size: 4.5rem;
+        margin: 1rem 0;
+    }
+
+    h2 {
+        font-size: 2.5rem;
+        font-weight: normal;
+        line-height: 1.2;
+    }
+
+    span,
+    strong {
+        color: #582eff;
+    }
+
+    @media (min-width: 768px) {
+        h1 {
+            font-size: 9rem;
+        }
+    }
+</style>
