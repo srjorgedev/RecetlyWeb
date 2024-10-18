@@ -20,15 +20,12 @@ const RegistrationForm = () => {
     const handleCrop = () => {
         const cropper = cropperRef.current?.cropper;
         if (cropper) {
-            // Obtener la imagen recortada en una resolución de 300x300
             const croppedCanvas = cropper.getCroppedCanvas({
                 width: 300,
-                height: 300,
+                height: 300,     
             });
-            // Convertir a base64 para mostrar o hacer algo con la imagen recortada
             const croppedImage = croppedCanvas.toDataURL('image/png');
             console.log(croppedImage);
-            // Aquí puedes hacer algo con la imagen recortada, como subirla a un servidor
         }
     };
 
@@ -48,7 +45,8 @@ const RegistrationForm = () => {
                             src={image}
                             style={{ height: 400, width: '100%' }}
                             initialAspectRatio={1}
-                            guides={false}
+                            aspectRatio={1}
+                            guides={true}
                             ref={cropperRef}
                             viewMode={1}
                         />
