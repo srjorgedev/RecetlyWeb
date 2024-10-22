@@ -1,9 +1,10 @@
 ---
 import MainLayout from "../../layouts/MainLayout.astro";
+
+const { id } = Astro.params;
+
 const cookies = Astro.request.headers.get("cookie");
 let token = null;
-let data = null;
-let recipes = null;
 
 if (cookies) {
     token = cookies.split(";").reduce((acc, cookie) => {
@@ -13,15 +14,15 @@ if (cookies) {
     }, "");
 }
 
-if (token !== null) {
-    const response = await fetch(
-        `https://app.recetly.net/api/v1/auth/get/${token}`,
-        { method: "GET" },
-    );
-    data = await response.json();
+let data = null;
+let recipes = null;
 
-    console.log(data);
-}
+const response = await fetch(`https://app.recetly.net/api/v2/auth/get/${id}`, {
+    method: "GET",
+});
+data = await response.json();
+
+console.log(data);
 ---
 
 <MainLayout title={data.user.userNickname}>
@@ -31,6 +32,8 @@ if (token !== null) {
     >
         <img src={data.user.userImg} />
     </section>
+
+    {id === token && <p>Esta es tu cuenta</p>}
 
     <section class="personal-info">
         <h1>{data.user.userNickname}</h1>
@@ -42,9 +45,7 @@ if (token !== null) {
         <p>
             {
                 data.user.userDescription ?? (
-                    <p class="placeholder">
-                        Sin descripcion
-                    </p>
+                    <p class="placeholder">Sin descripcion</p>
                 )
             }
         </p>

@@ -17,7 +17,7 @@ if (cookies) {
             <a href="/">Inicio</a>
             <a href="/recipes/">Recetas</a>
         </div>
-        {token !== null ? <a href="/user/profile">Perfil</a> : null}
+        {token !== null ? <a href={`/user/${token}`}>Perfil</a> : null}
         {token === null ? <a href="/auth/login">Perfil</a> : null}
     </nav>
 </header>

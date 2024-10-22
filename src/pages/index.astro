@@ -3,28 +3,32 @@ import MainLayout from "../layouts/MainLayout.astro";
 ---
 
 <MainLayout title="RECETLY">
-	<h1>BIENVENIDO A <span>RECETLY</span></h1>
-	<h2>La aplicacion <strong>#1</strong> de recetas de comida</h2>
-	<p>
-		<strong>¿Que es recetly?</strong> La mejor aplicacion de recetas de comida.
-		Aqui encontraras una gran variedad de recetas, desde mexicana, italiana,
-		oriental y entre muchas otras.
-	</p>
-	<p>
-		Se participe de la mejor aplicacion de recetas de comida del mercado.
-		Unete a la comunidad y aprovecha las posibilidades
-	</p>
+	<section>
+		<h1>BIENVENIDO A <span>RECETLY</span></h1>
+		<h2>La aplicacion <strong>#1</strong> de recetas de comida</h2>
+		<p>
+			<strong>¿Que es recetly?</strong> La mejor aplicacion de recetas de comida.
+			Aqui encontraras una gran variedad de recetas, desde mexicana, italiana,
+			oriental y entre muchas otras.
+		</p>
+		<p>
+			Se participe de la mejor aplicacion de recetas de comida del
+			mercado. Unete a la comunidad y aprovecha las posibilidades
+		</p>
 
-	<p>Unete a RECETLY</p>
+		<p>Unete a RECETLY</p>
 
-	<article>
-		<section>
-			<a id="signin" href="/auth/login">Iniciar Sesion</a>
-			<a id="signup" href="/auth/signup">Registrarse</a>
-		</section>
+		<article>
+			<div class="button-container">
+				<a id="signin" href="/auth/login">Iniciar Sesion</a>
+				<a id="signup" href="/auth/signup">Registrarse</a>
+			</div>
 
-		<a href="https://bit.ly/4eF7933">O descarga la aplicacion movil aqui</a>
-	</article>
+			<a href="https://bit.ly/4eF7933"
+				>O descarga la aplicacion movil aqui</a
+			>
+		</article>
+	</section>
 </MainLayout>
 
 <script></script>
@@ -41,6 +45,9 @@ import MainLayout from "../layouts/MainLayout.astro";
 		font-size: 1.8rem;
 		margin-top: 1.5rem;
 	}
+	section {
+		height: 100dvh;
+	}
 	article {
 		height: auto;
 		display: flex;
@@ -48,7 +55,7 @@ import MainLayout from "../layouts/MainLayout.astro";
 		gap: 0.5rem;
 		margin: 1rem 0 0 0;
 
-		& section {
+		& .button-container {
 			display: flex;
 			flex-direction: row;
 			gap: 0.5rem;
@@ -115,7 +122,7 @@ import MainLayout from "../layouts/MainLayout.astro";
 			gap: 0.5rem;
 			margin: 4rem 0 0 0;
 
-			& section {
+			& div.button-container {
 				display: flex;
 				flex-direction: row;
 				gap: 0.5rem;
