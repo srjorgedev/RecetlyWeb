@@ -1,0 +1,56 @@
+<div class="toggle-button">
+    <div class="toggle off"></div>
+</div>
+
+<script>
+    const $toggleButton = document.querySelector<HTMLElement>(".toggle-button");
+    const $toggle = $toggleButton.querySelector<HTMLElement>(".toggle");
+
+    function applyTheme(theme: string) {
+        document.documentElement.setAttribute("data-theme", theme);
+        localStorage.setItem("theme", theme);
+    }
+
+    const savedTheme = localStorage.getItem("theme") || "light";
+    applyTheme(savedTheme);
+
+    if (savedTheme === "dark") {
+        $toggle.classList.add("on");
+        $toggle.classList.remove("off");
+    } else {
+        $toggle.classList.add("off");
+        $toggle.classList.remove("on");
+    }
+
+    $toggleButton.addEventListener("click", () => {
+        const isDark = $toggle.classList.toggle("on");
+        $toggle.classList.toggle("off", !isDark);
+        const theme = isDark ? "dark" : "light";
+        applyTheme(theme);
+    });
+</script>
+<style>
+    .toggle-button {
+        height: 2.5rem;
+        background-color: var(--bg-light);
+        aspect-ratio: 2;
+        border-radius: 2rem;
+
+        .toggle {
+            height: 70%;
+            aspect-ratio: 1;
+            background-color: var(--color);
+            border-radius: 50%;
+            transition: transform 0.2s ease-in-out;
+            cursor: pointer;
+        }
+
+        .on {
+            transform: translate(150%, 20%);
+        }
+
+        .off {
+            transform: translate(30%, 20%);
+        }
+    }
+</style>

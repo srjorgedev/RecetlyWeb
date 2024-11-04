@@ -6,12 +6,12 @@ const Loader = () => {
         justifyContent: 'center',
         alignItems: 'center',
         width: '100%',
-        height: 'calc(100% - 2rem)',
+        height: '100%',
         position: 'absolute',
+        borderRadius: '8px',
         left: 0,
         bottom: 0,
         background: 'rgba(0,0,0,0.5)',
-        borderRadius: '2rem',
         backdropFilter: 'blur(1px)'
     };
 

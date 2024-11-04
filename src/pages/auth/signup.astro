@@ -4,7 +4,7 @@ import RegistrarionForm from "../../components/RegisterForm";
 ---
 
 <MainLayout title="Crea una cuenta">
-    <h1>BIENVENIDO</h1>
+    <h1 transition:name="title">BIENVENIDO</h1>
     <h2>
         Ingresa tus datos y registrate en <strong>RECETLY</strong> para tener acceso
         a la mejor aplicación de recetas de comida.
@@ -16,6 +16,7 @@ import RegistrarionForm from "../../components/RegisterForm";
     h1 {
         font-size: 4.5rem;
         margin: 1rem 0;
+        line-height: 1;
     }
 
     h2 {
@@ -32,6 +33,7 @@ import RegistrarionForm from "../../components/RegisterForm";
     @media (min-width: 768px) {
         h1 {
             font-size: 9rem;
+            margin: 0;
         }
     }
 </style>

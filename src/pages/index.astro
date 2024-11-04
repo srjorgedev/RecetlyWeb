@@ -1,10 +1,17 @@
 ---
 import MainLayout from "../layouts/MainLayout.astro";
+import Indicator from "../components/Indicator.astro";
+import SuggestForm from "../components/SuggestForm";
+
+const commentsResponse = await fetch(
+	"https://app.recetly.net/api/v1/suggest/get",
+);
+const commentsData = await commentsResponse.json();
 ---
 
 <MainLayout title="RECETLY">
 	<section>
-		<h1>BIENVENIDO A <span>RECETLY</span></h1>
+		<h1 transition:name="title">BIENVENIDO A <span>RECETLY</span></h1>
 		<h2>La aplicacion <strong>#1</strong> de recetas de comida</h2>
 		<p>
 			<strong>¿Que es recetly?</strong> La mejor aplicacion de recetas de comida.
@@ -28,6 +35,28 @@ import MainLayout from "../layouts/MainLayout.astro";
 				>O descarga la aplicacion movil aqui</a
 			>
 		</article>
+		<Indicator />
+	</section>
+	<section>
+		<h1>AYUDANOS A <strong>MEJORAR</strong></h1>
+		<p>
+			Tu <strong>opinion</strong> es muy importante para nosotros. Nos interesa
+			escuchar lo que tienes para decir y asi poder continuar mejorando la
+			aplicacion. ¡Deja tu comentario! Es totalmente anonimo.
+		</p>
+		<SuggestForm client:load />
+		<p>Comentarios</p>
+		<div class="comments">
+			{
+				commentsData.data.map((comment) => {
+					return (
+						<p class={`comment c-${comment.id}`}>
+							{comment.comment}
+						</p>
+					);
+				})
+			}
+		</div>
 	</section>
 </MainLayout>
 
@@ -41,10 +70,29 @@ import MainLayout from "../layouts/MainLayout.astro";
 	h2 {
 		font-size: 2.5rem;
 	}
-	p {
+	p:not(p.comment) {
 		font-size: 1.8rem;
 		margin-top: 1.5rem;
 	}
+
+	div.comments {
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+		margin: 1rem 0 0 0;
+		gap: 8px;
+		border: 2px solid var(--border-color);
+		border-radius: 16px;
+		padding: 0.5rem;
+
+		& p.comment {
+			font-size: 1.8rem;
+			background-color: var(--bg-light);
+			padding: 0.5rem 1rem;
+			border-radius: 8px;
+		}
+	}
+
 	section {
 		height: 100dvh;
 	}
@@ -65,14 +113,13 @@ import MainLayout from "../layouts/MainLayout.astro";
 				cursor: pointer;
 				padding: 1rem 2.5rem;
 				border: none;
+				color: #f1f1f1;
 			}
 			& a:first-child {
 				background: #582eff;
-				color: #f1f1f1;
 			}
 			& a:last-child {
 				background: #34208f;
-				color: #f1f1f1;
 			}
 		}
 		& a {
@@ -85,8 +132,8 @@ import MainLayout from "../layouts/MainLayout.astro";
 			background: #582eff25;
 			text-align: center;
 			border-radius: 16px;
-			color: #333333;
 			transition: 0.15s ease-in-out filter;
+			color: var(--color);
 		}
 		& a:hover {
 			filter: invert();
@@ -106,7 +153,7 @@ import MainLayout from "../layouts/MainLayout.astro";
 			font-weight: normal;
 			margin-bottom: 1rem;
 		}
-		p {
+		p:not(p.comment) {
 			font-size: 2.5rem;
 			margin-top: 1rem;
 			z-index: 2;
@@ -135,11 +182,9 @@ import MainLayout from "../layouts/MainLayout.astro";
 				}
 				& a:first-child {
 					background: #582eff;
-					color: #f1f1f1;
 				}
 				& a:last-child {
 					background: #34208f;
-					color: #f1f1f1;
 				}
 			}
 			& a {
@@ -152,16 +197,19 @@ import MainLayout from "../layouts/MainLayout.astro";
 				background: #582eff25;
 				text-align: center;
 				border-radius: 16px;
-				color: #333333;
 				transition: 0.15s ease-in-out filter;
 			}
 			& a:hover {
 				filter: invert();
 			}
 		}
-	}
-	span,
-	strong {
-		color: #582eff;
+
+		div.comments {
+			padding: 1.5rem;
+
+			& p.comment {
+				padding: 0.5rem 2.5rem;
+			}
+		}
 	}
 </style>
