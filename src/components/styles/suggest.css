@@ -14,11 +14,12 @@ form {
         resize: none;
         field-sizing: content;
         font-size: 1.25rem;
+        background-color: var(--bg-invert);
     }
 
     & input {
         font-size: 1.5rem;
-        color: var(--color);
+        color: #f1f1f1;
         background-color: #582eff;
         padding: 1rem 2.5rem;
         border-radius: 8px;

@@ -8,12 +8,11 @@ const SuggestForm = () => {
     const [text, setText] = useState(null)
 
     const onSubmit = async (event) => {
-        setLoading(true)
         event.preventDefault()
         if (!text || text == "") {
             return alert('No puede estar vacío');
         }
-
+        setLoading(true)
         const response = await fetch(`${API_URL}${ROUTES.POST_SUGGEST}`, {
             method: 'POST',
             body: JSON.stringify({ text: text }),
