@@ -2,11 +2,6 @@
 import MainLayout from "../layouts/MainLayout.astro";
 import Indicator from "../components/Indicator.astro";
 import SuggestForm from "../components/SuggestForm";
-
-const commentsResponse = await fetch(
-	"https://app.recetly.net/api/v1/suggest/get",
-);
-const commentsData = await commentsResponse.json();
 ---
 
 <MainLayout title="RECETLY">
@@ -44,19 +39,7 @@ const commentsData = await commentsResponse.json();
 			escuchar lo que tienes para decir y asi poder continuar mejorando la
 			aplicacion. ¡Deja tu comentario! Es totalmente anonimo.
 		</p>
-		<SuggestForm client:load />
-		<p>Comentarios</p>
-		<div class="comments">
-			{
-				commentsData.data.map((comment) => {
-					return (
-						<p class={`comment c-${comment.id}`}>
-							{comment.comment}
-						</p>
-					);
-				})
-			}
-		</div>
+		<SuggestForm client:visible />
 	</section>
 </MainLayout>
 
@@ -73,24 +56,6 @@ const commentsData = await commentsResponse.json();
 	p:not(p.comment) {
 		font-size: 1.8rem;
 		margin-top: 1.5rem;
-	}
-
-	div.comments {
-		display: flex;
-		flex-direction: row;
-		flex-wrap: wrap;
-		margin: 1rem 0 0 0;
-		gap: 8px;
-		border: 2px solid var(--border-color);
-		border-radius: 16px;
-		padding: 0.5rem;
-
-		& p.comment {
-			font-size: 1.8rem;
-			background-color: var(--bg-light);
-			padding: 0.5rem 1rem;
-			border-radius: 8px;
-		}
 	}
 
 	section {
@@ -201,14 +166,6 @@ const commentsData = await commentsResponse.json();
 			}
 			& a:hover {
 				filter: invert();
-			}
-		}
-
-		div.comments {
-			padding: 1.5rem;
-
-			& p.comment {
-				padding: 0.5rem 2.5rem;
 			}
 		}
 	}

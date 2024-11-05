@@ -3,15 +3,20 @@ import MainLayout from "../layouts/MainLayout.astro";
 ---
 
 <MainLayout title="Pagina no encontrada">
-    <h1>
-        <strong>Oops!</strong>
-        <br />Página no encontrada.
-    </h1>
-    <h2>Parece que te has perdido. <a href="/">Volvamos al inicio.</a></h2>
-    <h3>Error <strong>404</strong></h3>
+    <div>
+        <h1>
+            <strong>Oops!</strong>
+            <br />Página no encontrada.
+        </h1>
+        <h2>Parece que te has perdido. <a href="/">Volvamos al inicio.</a></h2>
+        <h3>Error <strong>404</strong></h3>
+    </div>
 </MainLayout>
 
 <style>
+    div {
+        height: calc(100dvh - 11rem);
+    }
     h1 {
         font-size: 5rem;
         margin: 1rem 0;
